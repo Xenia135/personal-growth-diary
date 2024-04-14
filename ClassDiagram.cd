@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Planer1.Models.Circleoflife" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAABCABAEAAAAAAAACAAAA=</HashCode>
+      <FileName>Models\Circleoflife.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Models.PlaneralContext">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAKEAAQAQAAAgAAAAAAAAEAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\PlaneralContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Models.Purpose" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAAAAAAAAAAQAAgAAAEAAAAhAAAAAAAA=</HashCode>
+      <FileName>Models\Purpose.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Models.Reminder" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEIAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\Reminder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Models.Stage">
+    <Position X="15.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAIAEAAAgAAAgAAAAAAQAAAAAABAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\Stage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Models.Treker">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Treker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Models.Useal" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAQAAAABAAACAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Useal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Users.CreateModel">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Planer1.Pages.Users.CreateModel.HashPasswordClass" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Pages\Users\Create.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAAAAAAAAAAAAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Pages\Users\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Users.DeleteModel">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAgAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Users\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Users.DetailsModel">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Users\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Users.EditModel">
+    <Position X="4.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAgAAAAAAAAAAAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Users\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Users.IndexModel">
+    <Position X="1" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Users\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Stages.CreateModel">
+    <Position X="13" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAwEAAAAAAA=</HashCode>
+      <FileName>Pages\Stages\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Stage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Planer1.Pages.Stages.DeleteModel">
+    <Position X="18" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAgEAAAAAAA=</HashCode>
+      <FileName>Pages\Stages\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Stage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Planer1.Pages.Stages.DetailsModel" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\Stages\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Stages.EditModel">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAgAAgEAAAAAAA=</HashCode>
+      <FileName>Pages\Stages\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Stage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Planer1.Pages.Stages.IndexModel" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgDAAgAAAQgAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\Stages\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planer1.Pages.Stages.PurposeNamePageModel">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Stages\PurposeName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

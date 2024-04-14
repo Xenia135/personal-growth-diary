@@ -1,0 +1,210 @@
+Scaffold-DbContext “Server=localhost;Database=glider1;Username=pols1;Password=1234;Persist Security Info=True” Npgsql.EntityFrameworkCore.PostgreSQL -OutputDir Models
+
+GRANT ALL PRIVILEGES ON DATABASE "database1" to user123;
+\c database1
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "user123";
+
+create database planer;
+create user pol password '1357';
+alter user pol superuser;
+
+create database glider;
+create user pols password '1234';
+alter user pols superuser;
+
+ health,
+        personal_life,
+        live_communication,
+        family,
+        rest,
+        self_realization,
+        finance,
+        personal_growth
+
+Create type NameSector as enum ('здоровье', 'личная жизнь', 'живое общение', 'дом, семья', 'отдых', 'самореализация', 'финансы', 'личностный рост');
+Create type status_name as enum ('realized',  'not done');
+
+create table Users
+(
+ID_users serial primary key not null,
+password varchar(40) not null,
+mail varchar(50) not null,
+constraint unique_login unique (mail),
+name varchar(15) not null
+);
+
+create table CircleOfLife
+(
+ID_sector serial primary key not null,
+ID_users int not null
+references Users( ID_users )
+on delete cascade
+on update cascade,
+NameSector name not null,
+fullness numeric(2) not null
+check(fullness>=0 and fullness<=10)
+);
+
+
+CREATE TABLE Purpose
+(
+ID_purpose serial primary key not null,
+ID_sector int not null
+references CircleOfLife( ID_sector )
+on delete cascade
+on update cascade,
+name varchar(50) not null,
+status boolean null,
+description text null
+);
+
+create table Stage
+(
+ID_stage serial primary key not null,
+ID_purpose int not null
+references Purpose ( ID_purpose )
+on delete cascade
+on update cascade,
+name varchar(50) not null,
+status boolean null,
+reminder boolean null,
+data date not null,
+description text null
+);
+
+create table Treker
+(
+ID_treker serial not null,
+ID_stage int not null
+references Stage ( ID_stage )
+on delete cascade
+on update cascade,
+primary key  (ID_treker, ID_stage),
+day date not null,
+status boolean null
+);
+
+create table Reminder
+(
+ID_reminder serial primary key not null,
+ID_stage int not null
+references Stage ( ID_stage )
+on delete cascade
+on update cascade,
+day date not null,
+time time not null
+);
+
+
+
+
+insert into Users values (1, '23erfdf','ksenia@mail.ru', 'Ксения');
+insert into CircleOfLife values (1, 1, 'здоровье', 5);
+insert into CircleOfLife values (2, 1, 'личная жизнь', 7);
+insert into CircleOfLife values (3, 1, 'живое общение', 10);
+insert into CircleOfLife values (4, 1, 'дом, семья', 9);
+insert into CircleOfLife values (5, 1, 'отдых', 2);
+insert into CircleOfLife values (6, 1, 'самореализация', 5);
+insert into CircleOfLife values (7, 1, 'финансы', 6);
+insert into CircleOfLife values (8, 1, 'личностный рост', 6);
+insert into Purpose values (1, 1, 'Заняться спортом', null , null);
+insert into Stage values (1, 1, 'Бегать по утрам', null, true, '2023.11.14', null);
+insert into Reminder values (1, 1,'2024.11.14', '12:00:00');
+
+insert into Users values (2, 'rtyfhy345','Kirill@mail.ru', 'Кириu');
+insert into Users values (4, 'tof2ofoto233','Danil@mail.ru', 'Данил');
+
+insert into Users values (5, 'totoro','Petro@mail.ru', 'Пётр');
+
+
+1 ТРИГЕР 21 СТРОКА
+
+create or replace function сreation() returns trigger as $$
+begin
+FOR i IN 1..21 LOOP
+insert into Treker values (i, new.ID_stage, new.data+ interval '1 day'*i, null);
+END LOOP;return new; end; $$ language plpgsql;
+
+create trigger сreatу after insert on Stage for each row execute function сreation();
+
+insert into stage values (3, 1, 'Пить воду', null, false, '2023.11.14', null );
+
+
+
+2 ТРИГГЕР НА НЕ СФОРМИРОВАНИЕ ПРИВЫЧКИ 
+
+create or replace function win() returns trigger as $$
+declare
+i int := 1;
+f int;
+po int := 0;
+pr int := 0;
+dt int :=0;
+begin
+f = new.id_treker;
+for i in 1..f loop
+   if (select status from treker t where (t.id_treker = i and t.ID_stage = new.ID_stage)) = 'realized'
+   then dt := dt+1;
+end if;
+   if (select status from treker t where (t.id_treker = i and t.ID_stage = new.ID_stage)) = 'not done'
+   then pr := pr+1; po := po+1;
+   else po = 0;
+end if; end loop;
+if (dt = 21)
+then RAISE NOTICE 'Привычка сформированна'; 
+update stage set status ='realized' where(id_stage=new.id_stage) ;
+update stage set reminder ='f' where(id_stage=new.id_stage) ;
+delete from treker where(id_stage=new.id_stage); 
+delete from reminder where (id_stage=new.id_stage);
+end if;
+if (po = 3 or pr = 4)
+then delete from stage where(id_stage=new.id_stage);
+RAISE NOTICE 'Привычка не сформированна'; 
+end if; return new; end; $$ language plpgsql;
+
+create trigger winner after update on treker for each row execute function win();
+
+
+
+update treker set status ='realized' where (id_treker=1 and id_stage = 4);
+insert into stage values (1, 1, 'Пить воду','every day', null, false, '2023.11.14', null );
+drop trigger winner on treker;
+drop function win;
+
+3 ТРИГГЕР НА СОЗДАНИЕ ДОП. ТИКЕТА ( при not done) работает
+
+create or replace function сreat() returns trigger as $$
+declare
+f int;
+begin
+f := (select id_treker from treker where(id_stage=new.id_stage) order by id_treker desc limit 1);
+if new.status = 'not done'
+then insert into Treker values (f+1, new.ID_stage, ((select day from Treker where(id_treker = f and id_stage=new.id_stage)) + 1), null);
+END if;return new; end; $$ language plpgsql;
+
+create trigger cre before update on treker for each row execute function сreat();
+
+
+
+update treker set status ='not done' where (id_treker=2 and id_stage = 3);
+select * from treker;
+
+drop trigger cre on treker;
+drop function сreat();
+
+drop trigger cre on treker;
+drop function сreat;
+
+
+ФУНКЦИЯ СТАТИСТИКА
+
+create or replace function print_names() returns table (pname varchar, sname varchar)  as $$
+--return query;
+    select p.name, s.name from Purpose p join Stage s on (p.id_purpose = s.id_purpose) where (p.status = 'realized' and s.status = 'realized');
+$$ IMMUTABLE LANGUAGE sql; 
+
+-- Вызов функции
+select * from print_names();
+drop function print_names();
+
+

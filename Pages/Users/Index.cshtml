@@ -1,0 +1,48 @@
+﻿@page
+@model Planer1.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Useal[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Useal[0].Mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Useal[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Useal) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdUsers">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdUsers">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdUsers">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

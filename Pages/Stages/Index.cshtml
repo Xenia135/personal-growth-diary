@@ -1,0 +1,85 @@
+﻿@page
+@model Planer1.Pages.Stages.IndexModel
+
+@{
+    ViewData["Title"] = "Stages";
+}
+
+<h4 class="d-flex justify-content-center align-items-center">
+    <span class="text-primary">Привычки</span>
+</h4>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Введите название:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Поиск" class="btn btn-primary" /> |
+            <a asp-page="./Index">Вернуться к полному списку</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.Stages[0].Name)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stages[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stages[0].Reminder)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                    @Html.DisplayNameFor(model => model.Stages[0].Data)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stages[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stages[0].IdPurposeNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Stages) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reminder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPurposeNavigation.Name)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdStage">Изменить</a>
+                    @*<a asp-page="./Details" asp-route-id="@item.IdStage">Подробнее</a>*@
+                    <a asp-page="./Delete" asp-route-id="@item.IdStage">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form>
+    <div class="card col-md-12">
+        <button asp-page="Create" class="btn btn-outline-success">Добавить</button>
+    </div>
+</form>

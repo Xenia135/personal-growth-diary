@@ -1,0 +1,69 @@
+﻿@page
+@model Planer1.Pages.Stages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Изменить привычку</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Stage.IdStage" />
+            <div class="form-group">
+                <label asp-for="Stage.IdPurposeNavigation" class="control-label"></label>
+                <select asp-for="Stage.IdPurpose" class="form-control"
+                        asp-items="@Model.PurposeNameSL"></select>
+                <span asp-validation-for="Stage.IdPurpose" class="text-danger"></span>
+
+                @*<label asp-for="Stage.IdPurpose" class="control-label"></label>
+                <select asp-for="Stage.IdPurpose" class="form-control" asp-items="ViewBag.IdPurpose"></select>
+                <span asp-validation-for="Stage.IdPurpose" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Stage.Name" class="control-label"></label>
+                <input asp-for="Stage.Name" class="form-control" />
+                <span asp-validation-for="Stage.Name" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Stage.Status" class="control-label"></label>
+                <input asp-for="Stage.Status" class="form-control" />
+                <span asp-validation-for="Stage.Status" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Stage.Reminder" class="control-label"></label>
+                <select asp-for="Stage.Reminder" class="form-control">
+                    <option value="false">Нет</option>
+                    <option value="true">Да</option>
+                </select>
+
+                @*<input asp-for="Stage.Reminder" class="form-control" />
+                <span asp-validation-for="Stage.Reminder" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Stage.Data" class="control-label"></label>
+                <input asp-for="Stage.Data" class="form-control" />
+                <span asp-validation-for="Stage.Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stage.Description" class="control-label"></label>
+                <input asp-for="Stage.Description" class="form-control" />
+                <span asp-validation-for="Stage.Description" class="text-danger"></span>
+            </div>
+            <div class="card col-md-12 mt-3">
+                <button asp-page="submit" value="Save" class="btn btn-outline-success" />Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-page="./Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

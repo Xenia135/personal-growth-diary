@@ -1,0 +1,36 @@
+﻿@page
+@model Planer1.Pages.Trekers.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детали трекера</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Treker.Day)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Treker.Day)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Treker.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Treker.Status)
+        </dd>
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Treker.IdStageNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Treker.IdStageNavigation.IdStage)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Treker?.IdTreker">Изменить</a> |
+    <a asp-page="./Index">Вернуться</a>
+</div>

@@ -1,0 +1,37 @@
+﻿@page
+@model Planer1.Pages.Pur.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детали цели</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Purpose.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Purpose.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Purpose.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Purpose.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Purpose.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Purpose.Description)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Purpose?.IdPurpose">Изменить</a> |
+    <a asp-page="./Index">Вернуться</a>
+</div>

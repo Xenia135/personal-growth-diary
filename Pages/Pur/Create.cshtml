@@ -1,0 +1,52 @@
+﻿@page
+@model Planer1.Pages.Pur.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Создать цель</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="Purpose.IdSector" class="control-label"></label>
+                <select asp-for="Purpose.IdSector" class ="form-control" asp-items="ViewBag.IdSector"></select>*@
+                <label asp-for="Purpose.IdSectorNavigation" class="control-label"></label>
+                <select asp-for="Purpose.IdSector" class="form-control"
+                        asp-items="@Model.CircleoflifeNameSL ">
+                    <option value="">-- Сферы жизни --</option>
+                </select>
+                <span asp-validation-for="Purpose.IdSector" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Purpose.Name" class="control-label"></label>
+                <input asp-for="Purpose.Name" class="form-control" />
+                <span asp-validation-for="Purpose.Name" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Purpose.Status" class="control-label"></label>
+                <input asp-for="Purpose.Status" class="form-control" />
+                <span asp-validation-for="Purpose.Status" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Purpose.Description" class="control-label"></label>
+                <input asp-for="Purpose.Description" class="form-control" />
+                <span asp-validation-for="Purpose.Description" class="text-danger"></span>
+            </div>
+            <div class="card col-md-12 mt-3">
+                <button asp-page="Create" class="btn btn-outline-success">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

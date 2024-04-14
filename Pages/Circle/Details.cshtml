@@ -1,0 +1,36 @@
+﻿@page
+@model Planer1.Pages.Circle.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детали сферы жизни</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Circleoflife.Namesector)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Circleoflife.Namesector)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Circleoflife.Fullness)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Circleoflife.Fullness)
+        </dd>
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Circleoflife.IdUsersNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Circleoflife.IdUsersNavigation.IdUsers)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Circleoflife?.IdSector">Изменить</a> |
+    <a asp-page="./Index">Вернуться</a>
+</div>

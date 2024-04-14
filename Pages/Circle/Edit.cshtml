@@ -1,0 +1,62 @@
+﻿@page
+@model Planer1.Pages.Circle.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Изменить сферу жизни</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Circleoflife.IdSector" />
+            <div class="form-group">
+                <label asp-for="Circleoflife.IdUsersNavigation" class="control-label"></label>
+                <select asp-for="Circleoflife.IdUsers" class="form-control"
+                        asp-items="@Model.UserNameSL"></select>
+                <span asp-validation-for="Circleoflife.IdUsers" class="text-danger"></span>
+
+
+                @*<label asp-for="Circleoflife.IdUsers" class="control-label"></label>
+                <select asp-for="Circleoflife.IdUsers" class="form-control" asp-items="ViewBag.IdUsers"></select>
+                <span asp-validation-for="Circleoflife.IdUsers" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Circleoflife.Namesector" class="control-label"></label>
+                <input asp-for="Circleoflife.Namesector" class="form-control" />
+                <span asp-validation-for="Circleoflife.Namesector" class="text-danger"></span>*@
+
+                <label asp-for="Circleoflife.Namesector" class="control-label"></label>
+                <select asp-for="Circleoflife.Namesector" class="form-control">
+                    <option value="Здоровье">Здоровье</option>
+                    <option value="Личная жизнь">Личная жизнь</option>
+                    <option value="Живое общение">Живое общение</option>
+                    <option value="Семья">Семья</option>
+                    <option value="Отдых">Отдых</option>
+                    <option value="Самореализация">Самореализация</option>
+                    <option value="Финансы">Финансы</option>
+                    <option value="Личностный рост">Личностный рост</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Circleoflife.Fullness" class="control-label"></label>
+                <input asp-for="Circleoflife.Fullness" class="form-control" />
+                <span asp-validation-for="Circleoflife.Fullness" class="text-danger"></span>
+            </div>
+            <div class="card col-md-12 mt-3">
+                <button asp-page="submit" value="Save" class="btn btn-outline-success" />Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

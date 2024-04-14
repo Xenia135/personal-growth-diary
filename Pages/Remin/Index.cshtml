@@ -1,0 +1,51 @@
+﻿@page
+@model Planer1.Pages.Remin.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4 class="d-flex justify-content-center align-items-center">
+    <span class="text-primary">Напоминания</span>
+</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reminder[0].Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reminder[0].Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reminder[0].IdStageNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Reminder) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdStageNavigation.Name)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdReminder">Изменить</a>
+                    @*<a asp-page="./Details" asp-route-id="@item.IdReminder">Подробнее</a>*@
+                    <a asp-page="./Delete" asp-route-id="@item.IdReminder">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form>
+    <div class="card col-md-12">
+        <button asp-page="Create" class="btn btn-outline-success">Добавить</button>
+    </div>
+</form>

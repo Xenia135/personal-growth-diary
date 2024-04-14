@@ -1,0 +1,48 @@
+﻿@page
+@model Planer1.Pages.Remin.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Создать напоминание</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Reminder.IdStageNavigation" class="control-label"></label>
+                <select asp-for="Reminder.IdStage" class="form-control"
+                        asp-items="@Model.StageNameSL ">
+                    <option value="">-- Привычки --</option>
+                </select>
+                <span asp-validation-for="Reminder.IdStage" class="text-danger" />
+
+                 @*<label asp-for="Reminder.IdStage" class="control-label"></label>
+                <select asp-for="Reminder.IdStage" class ="form-control" asp-items="ViewBag.IdStage"></select>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Reminder.Day" class="control-label"></label>
+                <input asp-for="Reminder.Day" type="date" class="form-control" />
+                <span asp-validation-for="Reminder.Day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reminder.Time" class="control-label"></label>
+                <input asp-for="Reminder.Time" type="time" class="form-control" />
+                <span asp-validation-for="Reminder.Time" class="text-danger"></span>
+            </div>
+            <div class="card col-md-12 mt-3">
+                <button asp-page="Create" class="btn btn-outline-success">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

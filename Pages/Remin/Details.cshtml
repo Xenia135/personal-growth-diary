@@ -1,0 +1,36 @@
+﻿@page
+@model Planer1.Pages.Remin.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детали напоминания</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reminder.Day)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reminder.Day)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reminder.Time)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reminder.Time)
+        </dd>
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reminder.IdStageNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reminder.IdStageNavigation.IdStage)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Reminder?.IdReminder">Изменить</a> |
+    <a asp-page="./Index">Вернуться</a>
+</div>

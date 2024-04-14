@@ -1,0 +1,68 @@
+﻿@page
+@model Planer1.Pages.Trekers.IndexModel
+
+@{
+    ViewData["Title"] = "Trekers";
+}
+
+<h4 class="d-flex justify-content-center align-items-center">
+    <span class="text-primary">Трекер</span>
+</h4>
+<form asp-page="./Index" method="get">
+	<div class="form-actions no-color">
+		<p>
+			Введите название:
+			<input type="text" name="SearchString" value="@Model.CurrentFilter" />
+			<input type="submit" value="Поиск" class="btn btn-primary" /> |
+			<a asp-page="./Index">Вернуться к полному списку</a>
+		</p>
+	</div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+                    @Html.DisplayNameFor(model => model.Trekers[0].IdTreker)
+
+            </th>
+            <th>
+
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                    @Html.DisplayNameFor(model => model.Trekers[0].Day)
+                </a>
+                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trekers[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trekers[0].IdStageNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Trekers) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTreker)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdStageNavigation.Name)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-idt="@item.IdTreker" asp-route-ids="@item.IdStage">Изменить</a>
+                   @* <a asp-page="./Details" asp-route-id="@item.IdTreker">Подробнее</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

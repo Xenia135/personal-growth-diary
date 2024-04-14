@@ -1,0 +1,53 @@
+﻿@page
+@model Planer1.Pages.Circle.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4 class="d-flex justify-content-center align-items-center">
+    <span class="text-primary">Оценка сфер жизни</span>
+</h4>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Circleoflife[0].Namesector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Circleoflife[0].Fullness)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Circleoflife[0].IdUsersNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Circleoflife) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Namesector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsersNavigation.Name)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdSector">Изменить</a>
+                    @*<a asp-page="./Details" asp-route-id="@item.IdSector">Подробнее</a>*@
+                    <a asp-page="./Delete" asp-route-id="@item.IdSector">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form>
+    <div class="card col-md-12">
+        <button asp-page="Create" class="btn btn-outline-success">Добавить</button>
+    </div>
+</form>
